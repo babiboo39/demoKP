@@ -7,7 +7,7 @@ pipeline {
     environment {
         service_name = "${JOB_NAME}".split('/').first()
         build_tool = sh (
-            script:  './testSCript.sh specifyBuild' ,
+            script:  'testSCript.sh specifyBuild' ,
             returnStdout: true
         ).trim()
         env_name = sh (
