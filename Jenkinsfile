@@ -7,21 +7,11 @@ pipeline {
     environment {
         service_name = "${JOB_NAME}".split('/').first()
         build_tool = sh (
-            script: ''' if [[ -f pom.xml ]]; then
-                          echo 'mvnw'
-                        elif [[ -f build.gradle ]]; then
-                          echo 'gradlew'
-                        fi ''',
+            script: ''' ./testSCript.sh specifyBuild ''',
             returnStdout: true
         ).trim()
         env_name = sh (
-            script: ''' if [[ ${GIT_BRANCH} == *'feature'* ]] || [[ ${GIT_BRANCH} == *'hotfix'* ]] || [[ ${GIT_BRANCH} == *'bugfix'* ]]; then
-                      echo 'feature'
-                    elif [[ ${GIT_BRANCH} == *'master' ]]; then
-                      echo 'alpha'
-                    else
-                      echo 'build not allowed in this branch'
-                    fi ''',
+            script: ''' ./testScript.sh specifyEnv ''',
             returnStdout: true
         ).trim()
     }
