@@ -6,7 +6,7 @@ pipeline {
 
     environment {
         service_name = "${JOB_NAME}".split('/').first()
-        build_tool = sh (script:  "testSCript.sh specifyBuild" , returnStdout: true).trim()
+        build_tool = sh (script:  '/home/babiboo39/Documents/_private/script/demoKP/testScript.sh specifyBuild' , returnStdout: true).trim()
         env_name = sh (script: "testScript.sh specifyEnv", returnStdout: true).trim()
     }
     stages {
